@@ -1,0 +1,60 @@
+- name: Initialize Server
+  hosts: all
+  user: admin
+  become: yes
+  vars:
+    - DEST_DIR: apps/
+    - GIT_REPO: git@bitbucket.org:yadechi/symfony-demo-app.git
+    - GIT_BRANCH: main
+    - USER: admin
+  tasks:
+    - name : install dependencies before starting
+      apt:
+        name:
+          - nginx
+          - nodejs
+          - npm
+          - git
+          - php
+          - mysql-server
+        state: latest
+        update_cache: yes
+
+    - name: Version of Node and NPM
+      shell:
+        "npm -v && nodejs -v"
+
+    - name: Install Angular
+      shell:
+        "npm install -g @angular/cli"
+
+    - name: Install Symfony CLI
+      shell: |
+        curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh'
+        sudo -E bash
+        sudo apt install symfony-cli -y
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Create Dest Directory if not exists
+      file: 
+        path: "{{ DEST_DIR }}"
+        state: directory
+        owner: admin
+        group: admin
+        mode: 0755
+
+    # - name: Include task list in play
+    #   ansible.builtin.import_tasks:
+    #     file: deploy.yml
+    - name: Clone Git repository into {{ DEST_DIR }} folder
+      git:
+        repo: "{{ GIT_REPO }}"
+        version: "{{ GIT_BRANCH }}"
+        dest: "{{ DEST_DIR }}"
+        accept_hostkey: yes
+        key_file: /home/admin/tmp/id_ed25519
+        force: yes

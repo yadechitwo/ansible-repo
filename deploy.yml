@@ -1,0 +1,17 @@
+- name: Deploy Application
+  hosts: all
+  vars:
+    - ansistrano_deploy_from: /home/admin/ansible
+    - ansistrano_deploy_to: /home/admin/apps
+    - ansistrano_keep_releases: 3
+    - ansistrano_deploy_via: git
+    - ansistrano_git_repo: git@bitbucket.org:yadechi/symfony-demo-app.git
+    # ansistrano_shared_paths:
+    #   - var/logs
+    #   - var/sessions
+    - symfony_console_path: bin/console
+    - symfony_run_assetic_dump: false
+    - symfony_run_doctrine_migrations: true
+  roles:
+      - { role: cbrunnkvist.ansistrano-symfony-deploy }
+  
