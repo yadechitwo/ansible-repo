@@ -12,15 +12,15 @@
         file: vars.yml
     - name : install dependencies before starting
       apt:
-        name: {{ items }}
-        state: latest
-        update_cache: yes
-        with_items:
+        name: 
           - nginx
           - nodejs
           # - npm
           - git
           - php
+        state: latest
+        update_cache: yes
+          
     - name: Install Angular
       shell:
         "npm install -g @angular/cli"
