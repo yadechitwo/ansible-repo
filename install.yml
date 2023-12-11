@@ -24,16 +24,19 @@
     - name: Install Angular
       shell:
         "npm install -g @angular/cli"
+
     - name: Install Composer
       shell: |
         curl -sS https://getcomposer.org/installer -o composer-setup.php
         sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
         sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
         echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
+
     - name: Start nginx
       service:
         name: nginx
         state: started
+
     - name: Create Dest Directory if not exists
       file: 
         path: "{{ DEST_DIR }}"
@@ -41,6 +44,19 @@
         owner: admin
         group: admin
         mode: 0755
+
+    - name: copy contents of dir1 to /tmp/dir1_contents
+      copy:
+        src: /home/admin/iac/sshkeys/id_ed25519
+        dest: /tmp/id_ed25519
+        directory_mode:
+      tags:
+        - simple_copy
+
+    - name: Configure git
+      shell: |
+        "git config --global user.email adechiyannick@yahoo.fr"
+        "sudo chmod 400 /tmp/id_ed25519"
 
     - name: Clone Git repository into {{ DEST_DIR }} folder
       git:
