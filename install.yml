@@ -1,0 +1,53 @@
+- name: Initialize Server
+  hosts: all
+  user: admin
+  become: yes
+  vars:
+    - DEST_DIR: apps/
+    - GIT_REPO: git@bitbucket.org:yadechi/symfony-demo-app.git
+    - GIT_BRANCH: main
+    - USER: admin
+  tasks:
+    - include_vars:
+        file: vars.yml
+    - name : install dependencies before starting
+      apt:
+        name: {{ items }}
+        state: latest
+        update_cache: yes
+        with_items:
+          - nginx
+          - nodejs
+          # - npm
+          - git
+          - php
+    - name: Install Angular
+      shell:
+        "npm install -g @angular/cli"
+    - name: Install Composer
+      shell: |
+        curl -sS https://getcomposer.org/installer -o composer-setup.php
+        sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
+        sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
+        echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+    - name: Create Dest Directory if not exists
+      file: 
+        path: "{{ DEST_DIR }}"
+        state: directory
+        owner: admin
+        group: admin
+        mode: 0755
+
+    # - name: Clone Git repository into {{ DEST_DIR }} folder
+    #   git:
+    #     repo: "{{ GIT_REPO }}"
+    #     version: "{{ GIT_BRANCH }}"
+    #     dest: "{{ DEST_DIR }}"
+    #     clone: yes
+    #     force: yes
+    #     accept_hostkey: yes
+    #     key_file: /home/admin/tmp/id_ed25519

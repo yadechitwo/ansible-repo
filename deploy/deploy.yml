@@ -1,0 +1,13 @@
+---
+- hosts: ansible_clients
+  become: yes
+  become_user: root
+  vars:
+    dest: "/var/www/site/"
+    ansistrano_deploy_via: "git"
+    ansistrano_git_repo: https://yadechi@bitbucket.org/yadechi/symfony-demo-app.git
+    ansistrano_deploy_to: "{{ dest }}"
+    ansistrano_keep_releases: 3
+
+  roles:
+     - { role: ansistrano.deploy }
