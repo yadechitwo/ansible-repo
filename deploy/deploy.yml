@@ -9,6 +9,7 @@
     ansistrano_git_branch: main
     ansistrano_deploy_to: "{{ dest }}"
     ansistrano_keep_releases: 3
+    symfony_console_path: 'bin/console'
 
   roles:
      - { role: ansistrano.deploy }
