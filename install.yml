@@ -42,12 +42,12 @@
         group: admin
         mode: 0755
 
-    # - name: Clone Git repository into {{ DEST_DIR }} folder
-    #   git:
-    #     repo: "{{ GIT_REPO }}"
-    #     version: "{{ GIT_BRANCH }}"
-    #     dest: "{{ DEST_DIR }}"
-    #     clone: yes
-    #     force: yes
-    #     accept_hostkey: yes
-    #     key_file: /home/admin/tmp/id_ed25519
+    - name: Clone Git repository into {{ DEST_DIR }} folder
+      git:
+        repo: "{{ GIT_REPO }}"
+        version: "{{ GIT_BRANCH }}"
+        dest: "{{ DEST_DIR }}"
+        clone: yes
+        force: yes
+        accept_hostkey: yes
+        key_file: /home/admin/tmp/id_ed25519
