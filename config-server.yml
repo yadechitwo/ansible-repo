@@ -1,8 +1,8 @@
 ---
 - name: Create dest folder
   hosts: all
+  user: admin
   become: yes
-  become_user: admin
   vars:
     dest: "/var/www/site/"
   tasks:
