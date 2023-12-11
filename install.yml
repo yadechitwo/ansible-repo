@@ -50,6 +50,8 @@
         src: /home/admin/iac/sshkeys/id_ed25519
         dest: /tmp/id_ed25519
         directory_mode:
+      become: true
+      become_user: root
       tags:
         - simple_copy
 
