@@ -1,15 +1,10 @@
 ---
-- hosts: ansible_clients
+- name: Create dest folder
+  hosts: all
   become: yes
   become_user: admin
   vars:
     dest: "/var/www/site/"
-    apache_global_vhost_settings: |
-      DirectoryIndex index.php index.htm
-    apache_vhosts:
-      - servername: "website"
-        documentroot: "{{ dest }}current/" # <1>
-
   tasks:
 
     - name: create directory for website
@@ -17,6 +12,3 @@
         path: /var/www/site/
         state: directory
         mode: 0755
-
-  roles:
-    - { role: geerlingguy.apache }
