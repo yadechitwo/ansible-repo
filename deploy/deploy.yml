@@ -1,5 +1,5 @@
 ---
-- hosts: ansible_clients
+- hosts: all
   become: yes
   become_user: admin
   vars:
