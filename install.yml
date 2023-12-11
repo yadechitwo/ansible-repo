@@ -58,8 +58,8 @@
 
     - name: Configure git
       shell: |
-        "git config --global user.email adechiyannick@yahoo.fr"
-        "sudo chmod 400 /tmp/id_ed25519"
+        git config --global user.email adechiyannick@yahoo.fr
+        sudo chmod 400 /tmp/id_ed25519
 
     - name: Clone Git repository into {{ DEST_DIR }} folder
       git:
