@@ -1,12 +1,16 @@
 - name: Initialize Server
-  hosts: all
+  hosts:
+    ta-lxlt:
+      ansible_host: 176.34.151.74
+      ansible_ssh_private_key_file: ~/tmp/id_rsa_cds
   user: admin
   become: yes
   vars:
-    - DEST_DIR: apps/
-    - GIT_REPO: git@bitbucket.org:yadechi/symfony-demo-app.git
-    - GIT_BRANCH: main
-    - USER: admin
+    DEST_DIR: apps/
+    GIT_REPO: git@bitbucket.org:yadechi/symfony-demo-app.git
+    GIT_BRANCH: main
+    USER: admin
+    ansible_user: ta
   tasks:
     - include_vars:
         file: vars.yml
