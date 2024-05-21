@@ -19,6 +19,7 @@
           - git
           - php
           - rsync
+          - docker
         state: latest
         update_cache: yes
           
