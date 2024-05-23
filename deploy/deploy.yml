@@ -5,9 +5,9 @@
   vars:
     dest: "/var/www/site"
     ansistrano_deploy_via: "git"
-    ansistrano_git_repo: git+ssh://git@bitbucket.org:cds-linux-apps/dumbo-test-project.git
-    ansistrano_git_branch: main
-    ansistrano_git_identity_key_path: "~/tmp/id_rsa_cds"
+    ansistrano_git_repo: git@bitbucket.org:cds-linux-apps/dumbo-test-project.git
+    ansistrano_git_branch: master
+    ansistrano_git_identity_key_path: "/tmp/deploy"
     ansistrano_deploy_to: "/home/admin/apps/"
     ansistrano_keep_releases: 3
 
