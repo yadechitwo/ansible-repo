@@ -4,8 +4,7 @@
   become: yes
   vars:
     DEST_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
-    GIT_REPO: git@bitbucket.org:yadechi/symfony-demo-app.git
-    GIT_BRANCH: main
+    LOG_DIR: space/logs/apache/testing.eroolaconsulting.com/php
     USER: admin
   tasks:
     - include_vars:
@@ -35,35 +34,11 @@
 
     - name: Create Dest Directory if not exists
       file: 
-        path: "{{ DEST_DIR }}"
+        path: "{{ item }}"
         state: directory
         owner: admin
         group: admin
         mode: 0755
-
-    # - name: copy contents of dir1 to /tmp/dir1_contents
-    #   copy:
-    #     src: /home/admin/iac/sshkeys/id_ed25519
-    #     dest: /tmp/id_ed25519
-    #     remote_src: true
-    #     directory_mode:
-    #   become: true
-    #   become_user: root
-    #   tags:
-    #     - simple_copy
-
-    # - name: Configure git
-    #   shell: |
-    #     git config --global user.email adechiyannick@yahoo.fr
-    #     sudo chmod 400 /tmp/id_ed25519
-    #     git clone https://yadechi@bitbucket.org/yadechi/symfony-demo-app.git
-
-    # - name: Clone Git repository into {{ DEST_DIR }} folder
-    #   git:
-    #     repo: "{{ GIT_REPO }}"
-    #     version: "{{ GIT_BRANCH }}"
-    #     dest: "{{ DEST_DIR }}"
-    #     clone: yes
-    #     force: yes
-    #     accept_hostkey: yes
-    #     key_file: /home/admin/tmp/id_ed25519
+      loop:
+        - "{{ DEST_DIR }}"
+        - "{{ LOG_DIR }}"

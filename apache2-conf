@@ -1,7 +1,10 @@
 <VirtualHost *:80>
     ServerName testing.eroolaconsulting.com
     ServerAlias www.testing.eroolaconsulting.com
-    DocumentRoot /var/www/project/web
+    php_value error_log /space/logs/apache/testing.eroolaconsulting.com/php/php.log
+    ErrorLog /space/logs/apache/testing.eroolaconsulting.com/error.log
+    CustomLog /space/logs/apache/testing.eroolaconsulting.com/access.log combined
+    DocumentRoot "/space/www/testing.eroolaconsulting.com/data/current/web"
 
     <Directory /space/www/testing.eroolaconsulting.com/data/current/web>
         DirectoryIndex app.php
