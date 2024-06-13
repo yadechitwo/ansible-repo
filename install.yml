@@ -13,7 +13,6 @@
     - name : install dependencies before starting
       apt:
         name: 
-          - nginx
           - nodejs
           - npm
           - git
@@ -33,11 +32,6 @@
         sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
         sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
         echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
-
-    - name: Start nginx
-      service:
-        name: nginx
-        state: started
 
     - name: Create Dest Directory if not exists
       file: 
