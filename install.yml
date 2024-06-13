@@ -3,7 +3,7 @@
   user: admin
   become: yes
   vars:
-    DEST_DIR: apps/
+    DEST_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
     GIT_REPO: git@bitbucket.org:yadechi/symfony-demo-app.git
     GIT_BRANCH: main
     USER: admin

@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+    ServerName testing.eroolaconsulting.com
+    ServerAlias www.testing.eroolaconsulting.com
+    DocumentRoot /var/www/project/web
+
+    <Directory /space/www/testing.eroolaconsulting.com/data/current/web>
+        DirectoryIndex app.php
+        Options -Indexes -MultiViews
+        AllowOverride None
+        Require all granted
+
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ app.php [QSA,L]
+    </Directory>
+</VirtualHost>
