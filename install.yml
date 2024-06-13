@@ -32,7 +32,7 @@
         sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
         echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
 
-    - name: Create Dest Directory if not exists
+    - name: Create document root if not exists
       file: 
         path: "{{ item }}"
         state: directory
@@ -42,3 +42,13 @@
       loop:
         - "{{ DEST_DIR }}"
         - "{{ LOG_DIR }}"
+      
+    - name: create index file port 80 
+      copy:
+        content: "Hello wolrd"
+        dest: "{{ DEST_DIR }}/index.html"
+
+    - name: create index file port 80
+      copy:
+        content: "{{ ansible_default_ipv4.address }}  has been customized with ansible"
+        dest: "{{ 80_index }}"
