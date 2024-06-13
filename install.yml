@@ -45,7 +45,7 @@
     
     - name: Set up Apache virtuahHost
       template:
-        src: "apache-conf/apache.conf.j2"
+        src: "apache-conf/apache2.conf"
         dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com"
 
     - name: create index file port 80 
