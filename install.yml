@@ -3,7 +3,7 @@
   user: admin
   become: yes
   vars:
-    PHP_VERSION: 7.4.3
+    PHP_VERSION: 7.4
     DEST_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
     LOG_DIR: space/logs/apache/testing.eroolaconsulting.com/php
     USER: admin
