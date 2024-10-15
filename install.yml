@@ -15,16 +15,9 @@
         name: 
           - nodejs
           - npm
-          - git
-          
+          - git 
           - rsync
           - docker
-          - php-mysql 
-          - php-xml 
-          - php-gd
-          - libapache2-mod-wsgi
-          - libapache2-mod-php 
-          - php-curl
         state: latest
         update_cache: yes
     - name: install php related packages
@@ -35,14 +28,14 @@
           - php-xml={{PHP_VERSION}}
           - php-gd={{PHP_VERSION}}
           - php-curl={{PHP_VERSION}}
-          - libapache2-mod-wsgi
-          - libapache2-mod-php 
         state: installed
         update_cache: yes
+    - name: Install other php-apache pkgs
+      shell:
+        "sudo apt install libapache2-mod-php libapache2-mod-wsgi -y"
     - name: Install Angular
       shell:
         "npm install -g @angular/cli"
-
     - name: Install Composer
       shell: |
         curl -sS https://getcomposer.org/installer -o composer-setup.php
