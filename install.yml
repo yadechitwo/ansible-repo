@@ -28,7 +28,7 @@
           - php-xml={{PHP_VERSION}}
           - php-gd={{PHP_VERSION}}
           - php-curl={{PHP_VERSION}}
-        state: installed
+        state: fixed
         update_cache: yes
     - name: Install other php-apache pkgs
       shell:
