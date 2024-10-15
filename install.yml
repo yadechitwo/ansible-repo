@@ -3,6 +3,7 @@
   user: admin
   become: yes
   vars:
+    PHP_VERSION: 7.4.3
     DEST_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
     LOG_DIR: space/logs/apache/testing.eroolaconsulting.com/php
     USER: admin
@@ -15,12 +16,29 @@
           - nodejs
           - npm
           - git
-          - php
+          
           - rsync
           - docker
+          - php-mysql 
+          - php-xml 
+          - php-gd
+          - libapache2-mod-wsgi
+          - libapache2-mod-php 
+          - php-curl
         state: latest
         update_cache: yes
-          
+    - name: install php related packages
+      apt:
+        name:
+          - php={{PHP_VERSION}}
+          - php-mysql={{PHP_VERSION}} 
+          - php-xml={{PHP_VERSION}}
+          - php-gd={{PHP_VERSION}}
+          - php-curl={{PHP_VERSION}}
+          - libapache2-mod-wsgi
+          - libapache2-mod-php 
+        state: installed
+        update_cache: yes
     - name: Install Angular
       shell:
         "npm install -g @angular/cli"
