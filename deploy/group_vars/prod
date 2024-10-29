@@ -1,3 +1,0 @@
----
-deploy_to: /home/admin/apps
-symfony_php_path: php

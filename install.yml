@@ -2,14 +2,16 @@
   hosts: webservers
   user: admin
   become: yes
+  vars_files:
+    - ./vars/vars.yml
   vars:
-    PHP_VERSION: 7.4
-    DEST_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
-    LOG_DIR: space/logs/apache/testing.eroolaconsulting.com/php
+    MAIN_DIR: space/www/testing.eroolaconsulting.com/data/
+    DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
+    RELEASE_DIR: space/www/testing.eroolaconsulting.com/data/releases
+    LOG_DIR: space/logs/apache/testing.eroolaconsulting.com
     USER: admin
+
   tasks:
-    - include_vars:
-        file: vars.yml
     - name : install dependencies before starting
       apt:
         name: 
@@ -20,30 +22,52 @@
           - docker
         state: latest
         update_cache: yes
+
     - name: install php related packages
       apt:
         name:
-          - php={{PHP_VERSION}}
-          - php-mysql={{PHP_VERSION}} 
-          - php-xml={{PHP_VERSION}}
-          - php-gd={{PHP_VERSION}}
-          - php-curl={{PHP_VERSION}}
+          - php={{php_version}}
+          - php-mysql={{php_version}} 
+          - php-xml={{php_version}}
+          - php-gd={{php_version}}
+          - php-curl={{php_version}}
         state: fixed
         update_cache: yes
+
     - name: Install other php-apache pkgs
       shell:
         "sudo apt install libapache2-mod-php libapache2-mod-wsgi -y"
+
     - name: Install Angular
       shell:
         "npm install -g @angular/cli"
-    - name: Install Composer
-      shell: |
-        curl -sS https://getcomposer.org/installer -o composer-setup.php
-        sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
-        sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
-        echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
 
-    - name: Create document root if not exists
+    - name: Install low-level utilities
+      apt:
+        name: "{{ item }}"
+      with_items:
+        - zip
+        - unzip
+    
+    - name: Download Composer
+      script: scripts/install-composer.sh
+
+    - name: Move Composer globally
+      command: "mv composer.phar /usr/local/bin/composer"
+
+    - name: Set permissions on Composer
+      file:
+        path: /usr/local/bin/composer
+        mode: "a+x"
+
+    # - name: Install Composer
+    #   shell: |
+    #     curl -sS https://getcomposer.org/installer -o composer-setup.php
+    #     sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
+    #     sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
+    #     echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
+
+    - name: Create directories if not exist
       file: 
         path: "{{ item }}"
         state: directory
@@ -51,7 +75,9 @@
         group: admin
         mode: 0755
       loop:
-        - "{{ DEST_DIR }}"
+        - "{{ MAIN_DIR }}"
+        - "{{ DOCUMENT_ROOT_DIR }}"
+        - "{{ RELEASE_DIR }}"
         - "{{ LOG_DIR }}"
     
     - name: Set up Apache virtuahHost

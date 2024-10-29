@@ -2,14 +2,27 @@
 - hosts: webservers
   user: admin
   become: yes
+  vars_files:
+    - ./vars/vars.yml
+  
+  vars_prompt:
+    - name: git_branch
+      prompt: 'Enter a branch to deploy'
+      default: master
+      private: no
   vars:
-    dest: "/var/www/site"
+    release_console_path: "{{ ansistrano_release_path.stdout }}/bin/console"
+    release_var_path: "{{ ansistrano_release_path.stdout }}/var"
     ansistrano_deploy_via: "git"
     ansistrano_git_repo: git@bitbucket.org:cds-linux-apps/dumbo-test-project.git
-    ansistrano_git_branch: master
-    ansistrano_git_identity_key_path: "/tmp/deploy"
-    ansistrano_deploy_to: "/home/admin/apps/"
+    ansistrano_git_branch: "{{ git_branch }}"
+    ansistrano_git_identity_key_path: "{{ git_key_path }}"
+    ansistrano_deploy_to: "{{ project_deploy_dir }}"
     ansistrano_keep_releases: 3
+    ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/deploy/custom-tasks/after-symlink-shared.yml"
+  
+  environment:
+    SYMFONY_ENV: prod
 
   roles:
      - { role: ansistrano.deploy }
