@@ -26,11 +26,11 @@
     - name: install php related packages
       apt:
         name:
-          - php={{php_version}}
-          - php-mysql={{php_version}} 
-          - php-xml={{php_version}}
-          - php-gd={{php_version}}
-          - php-curl={{php_version}}
+          - php{{php_version}}
+          - php-mysql{{php_version}} 
+          - php-xml{{php_version}}
+          - php-gd{{php_version}}
+          - php-curl{{php_version}}
         state: fixed
         update_cache: yes
 
