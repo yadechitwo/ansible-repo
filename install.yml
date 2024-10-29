@@ -1,7 +1,7 @@
 - name: Initialize Server
   hosts: webservers
   user: admin
-  become: yes
+  become: true
   vars_files:
     - ./vars/vars.yml
   vars:
