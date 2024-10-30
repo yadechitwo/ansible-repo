@@ -40,7 +40,7 @@
 
     - name: Install Angular
       shell:
-        "npm install -g @angular/cli"
+        "npm list -g @angular/cli || npm install -g @angular/cli"
 
     - name: Install low-level utilities
       apt:
@@ -87,5 +87,5 @@
 
     - name: create index file port 80 
       copy:
-        content: "Hello wolrd"
-        dest: "{{ DEST_DIR }}/index.html"
+        content: "Hello world"
+        dest: "{{ DOCUMENT_ROOT_DIR }}/index.html"
