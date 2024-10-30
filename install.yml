@@ -12,18 +12,36 @@
     USER: admin
 
   tasks:
-    - name : install dependencies before starting
+    - name : Install Git
+      apt:
+        name: 
+          - git 
+        state: latest
+        update_cache: yes
+
+    - name : Install NodeJs & npm
       apt:
         name: 
           - nodejs
           - npm
-          - git 
+        state: latest
+        update_cache: yes
+
+    - name : Install rsync
+      apt:
+        name: 
           - rsync
+        state: latest
+        update_cache: yes
+
+    - name : Install docker
+      apt:
+        name: 
           - docker
         state: latest
         update_cache: yes
 
-    - name: install php related packages
+    - name: Install php related packages
       apt:
         name:
           - php{{php_version}}
@@ -35,8 +53,7 @@
         update_cache: yes
 
     - name: Install other php-apache pkgs
-      shell:
-        "sudo apt install libapache2-mod-php libapache2-mod-wsgi-py3 -y"
+      command: "sudo apt install libapache2-mod-php libapache2-mod-wsgi-py3 -y"
 
     - name: Install Angular
       shell:
@@ -59,13 +76,6 @@
       file:
         path: /usr/local/bin/composer
         mode: "a+x"
-
-    # - name: Install Composer
-    #   shell: |
-    #     curl -sS https://getcomposer.org/installer -o composer-setup.php
-    #     sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
-    #     sudo php composer-setup.php --install-dir=/usr/local/composer --filename=phpcomposer
-    #     echo 'export PATH="$PATH:/usr/local/composer"' >> ~/.bashrc
 
     - name: Create directories if not exist
       file: 
