@@ -19,7 +19,7 @@
     ansistrano_git_identity_key_path: "{{ git_key_path }}"
     ansistrano_deploy_to: "{{ project_deploy_dir }}"
     ansistrano_keep_releases: 3
-    ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/deploy/custom-tasks/after-symlink-shared.yml"
+    ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/custom-tasks/after-symlink-shared.yml"
   
   environment:
     SYMFONY_ENV: prod
