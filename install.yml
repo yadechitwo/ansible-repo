@@ -1,5 +1,5 @@
-- name: Initialize Server
-  hosts: webservers
+---
+- hosts: webservers
   user: admin
   become: true
   vars_files:
