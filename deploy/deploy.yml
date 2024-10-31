@@ -25,4 +25,4 @@
     SYMFONY_ENV: prod
 
   roles:
-     - ansistrano.deploy
+     - { role: ansistrano.deploy }

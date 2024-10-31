@@ -6,6 +6,6 @@
 
   vars:
     ansistrano_deploy_to: "{{ project_deploy_dir }}"
-    
+
   roles:
-    - ansistrano.rollback
+    - { role: ansistrano.rollback }
