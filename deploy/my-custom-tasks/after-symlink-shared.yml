@@ -5,7 +5,7 @@
 #     dest: "{{ ansistrano_release_path.stdout }}/app/config/parameters.yml"
 
 - name: Install Composer dependencies
-  become: false
+  become: true
   composer:
     command: install
     working_dir: "{{ ansistrano_release_path.stdout }}"

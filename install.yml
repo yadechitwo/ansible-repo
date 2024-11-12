@@ -66,10 +66,9 @@
 
     - name: Install low-level utilities
       apt:
-        name: "{{ item }}"
-      with_items:
-        - zip
-        - unzip
+        name:
+          - zip
+          - unzip
     
     - name: Download Composer
       script: scripts/install-composer.sh
