@@ -1,14 +1,15 @@
 ---
-# - name: Set up infra-related params
-#   template:
-#     src: "{{ playbook_dir }}/templates/parameters.yml.dist"
-#     dest: "{{ ansistrano_release_path.stdout }}/app/config/parameters.yml"
 
-- name: Install Composer dependencies
-  become: true
-  composer:
-    command: install
-    working_dir: "{{ ansistrano_release_path.stdout }}"
+- name: Set up Apache virtuahHost
+  template:
+    src: "apache-conf/apache2.conf"
+    dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
+
+# - name: Install Composer dependencies
+#   become: true
+#   composer:
+#     command: install
+#     working_dir: "{{ ansistrano_release_path.stdout }}"
 
 - name: Clear the cache
   command: "{{ release_console_path }} cache:clear --no-warmup --env=prod"
