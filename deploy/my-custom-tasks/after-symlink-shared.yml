@@ -1,10 +1,5 @@
 ---
 
-- name: Set up Apache virtuahHost
-  template:
-    src: "apache-conf/apache2.conf"
-    dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
-
 # - name: Install Composer dependencies
 #   become: true
 #   composer:
