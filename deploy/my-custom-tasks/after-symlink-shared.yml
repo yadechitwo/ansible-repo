@@ -1,7 +1,7 @@
 ---
-- name: Set up Apache virtuahHost
+- name: Copy htaccess to folder
   template:
-    src: "temp/v1.htaccess"
+    src: space/www/testing.eroolaconsulting.com/data/.htaccess
     dest: space/www/testing.eroolaconsulting.com/data/current/public/.htaccess
 
 - name: Disable default Apache site

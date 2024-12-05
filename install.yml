@@ -98,3 +98,8 @@
       template:
         src: "apache-conf/apache2.conf"
         dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
+
+    - name: Set up Apache virtuahHost
+      template:
+        src: temp/v1.htaccess
+        dest: "{{ MAIN_DIR }}.htaccess"
