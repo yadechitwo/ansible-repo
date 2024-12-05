@@ -98,8 +98,3 @@
       template:
         src: "apache-conf/apache2.conf"
         dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
-
-    - name: create index file port 80 
-      copy:
-        content: "Hello world"
-        dest: "{{ DOCUMENT_ROOT_DIR }}/index.html"
