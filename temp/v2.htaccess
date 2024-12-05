@@ -21,12 +21,12 @@
 </IfModule>
 
 # Prevent access to .htaccess file itself
-<Files ".htaccess">
-    Require all denied
-</Files>
+# <Files ".htaccess">
+#     Require all denied
+# </Files>
 
 # Disable directory listing
-Options -Indexes
+# Options -Indexes
 
 # Add security headers
 <IfModule mod_headers.c>
@@ -64,9 +64,9 @@ Options -Indexes
 </IfModule>
 
 # Deny access to sensitive files
-<FilesMatch "\.(env|git|log|sql|sqlite|json|config)$">
-    Require all denied
-</FilesMatch>
+# <FilesMatch "\.(env|git|log|sql|sqlite|json|config)$">
+#     Require all denied
+# </FilesMatch>
 
 # Redirect HTTP to HTTPS (optional, if HTTPS is enabled)
 #<IfModule mod_rewrite.c>
@@ -76,5 +76,5 @@ Options -Indexes
 
 
 # Disable ETags (on a pas besoin de ca.. server overhead donc on skip)
-Header unset ETag
-FileETag None
+# Header unset ETag
+# FileETag None
