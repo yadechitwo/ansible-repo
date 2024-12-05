@@ -102,4 +102,4 @@
     - name: Copy .htaccess file to server
       template:
         src: temp/v1.htaccess
-        dest: "{{ MAIN_DIR }}/.htaccess"
+        dest: space/www/testing.eroolaconsulting.com/data/.htaccess
