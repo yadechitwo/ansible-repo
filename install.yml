@@ -101,5 +101,5 @@
 
     - name: Copy .htaccess file to server
       template:
-        src: temp/v1.htaccess
-        dest: space/www/testing.eroolaconsulting.com/data/.htaccess
+        src: "temp/v1.htaccess"
+        dest: "space/www/testing.eroolaconsulting.com/data/.htaccess"
