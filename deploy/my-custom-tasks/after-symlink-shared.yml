@@ -1,10 +1,4 @@
 ---
-- name: Copy .htaccess file
-  become: true
-  copy:
-    src: /home/admin/iac/ansible-repo/temp/v1.htaccess
-    dest: /home/admin/space/www/testing.eroolaconsulting.com/data/current/public/.htaccess
-
 - name: Disable default Apache site
   become: true
   shell: /usr/sbin/a2dissite 000-default.conf

@@ -3,6 +3,12 @@
   user: admin
   become: true
   tasks:
+    - name: Copy .htaccess file
+      become: true
+      copy:
+        src: /home/admin/iac/ansible-repo/temp/v1.htaccess
+        dest: /home/admin/space/www/testing.eroolaconsulting.com/data/current/public/.htaccess
+
     - name: Enable some apache2 modules
       command: /usr/sbin/a2enmod rewrite headers deflate expires
 
