@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  user: admin
+  become: true
+  tasks:
+    - name: Copy htaccess to folder
+      template:
+        src: /home/admin/iac/ansible-repo/temp/v1.htaccess
+        dest: space/www/testing.eroolaconsulting.com/data/current/public/.htaccess
