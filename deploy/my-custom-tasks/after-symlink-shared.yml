@@ -1,7 +1,7 @@
 ---
 - name: Copy htaccess to folder
   copy:
-    src: temp/v1.htaccess
+    src: /home/admin/iac/ansible-repo/temp/v1.htaccess
     dest: space/www/testing.eroolaconsulting.com/data/current/public/.htaccess
     remote_src: yes
 
