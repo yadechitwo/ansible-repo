@@ -94,7 +94,7 @@
         - "{{ RELEASE_DIR }}"
         - "{{ LOG_DIR }}"
 
-    - name: Set up Apache virtuahHost
+    - name: Set up Apache virtualHost
       template:
         src: "apache-conf/apache2.conf"
         dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
