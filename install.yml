@@ -99,7 +99,7 @@
         src: "apache-conf/apache2.conf"
         dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
 
-    - name: Set up Apache virtuahHost
+    - name: Copy .htaccess file to server
       template:
         src: temp/v1.htaccess
         dest: "{{ MAIN_DIR }}.htaccess"
