@@ -101,5 +101,5 @@
 
     - name: Copy .htaccess file to server
       template:
-        src: "temp/v1.htaccess"
-        dest: "/home/admin/.htaccess"
+        src: temp/v1.htaccess
+        dest: "{{ MAIN_DIR }}/v1.htaccess"
