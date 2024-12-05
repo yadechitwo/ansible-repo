@@ -6,7 +6,7 @@
     - ./vars/vars.yml
   vars:
     MAIN_DIR: space/www/testing.eroolaconsulting.com/data/
-    DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/web/
+    DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/
     RELEASE_DIR: space/www/testing.eroolaconsulting.com/data/releases
     LOG_DIR: space/logs/apache/testing.eroolaconsulting.com
     USER: admin
