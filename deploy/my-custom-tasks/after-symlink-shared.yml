@@ -2,8 +2,6 @@
 - name: Disable default Apache site
   become: true
   shell: /usr/sbin/a2dissite 000-default.conf
-  when: disable_default
-  notify: Reload Apache
 
 - name: Reload Apache
   become: true
@@ -20,7 +18,6 @@
 - name: Enable new website
   become: true
   command: /usr/sbin/a2ensite testing.eroolaconsulting.com.conf
-  notify: Reload Apache
 
 - name: Reload Apache
   become: true

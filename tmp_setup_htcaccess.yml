@@ -7,3 +7,16 @@
       template:
         src: /home/admin/iac/ansible-repo/temp/v1.htaccess
         dest: space/www/testing.eroolaconsulting.com/data/current/public/.htaccess
+
+    - name: Enable some apache2 modules
+      command: /usr/sbin/a2enmod rewrite headers deflate expires
+
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
