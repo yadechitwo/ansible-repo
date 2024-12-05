@@ -1,0 +1,22 @@
+# Enable URL rewriting
+<IfModule mod_rewrite.c>
+    # Disable directory listings and other MultiViews options
+    Options -MultiViews
+    RewriteEngine On
+
+    # Ensure the Authorization header is passed to PHP
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect requests to index.php if the requested file or directory does not exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        # Redirect root requests to index.php if mod_rewrite is unavailable
+        RedirectMatch 302 ^/$ /index.php/
+    </IfModule>
+</IfModule>

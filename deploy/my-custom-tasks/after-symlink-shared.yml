@@ -1,5 +1,8 @@
 ---
-
+- name: Set up Apache virtuahHost
+  template:
+    src: "temp/v1.htaccess"
+    dest: "{{ ansistrano_release_path.stdout }}/.htaccess"
 # - name: Install Composer dependencies
 #   become: true
 #   composer:
