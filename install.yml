@@ -18,9 +18,9 @@
     - name : Install NodeJs & npm
       apt:
         name: 
-          - nodejs
-          - npm
-        state: latest
+          - nodejs20.18.1
+          - npm10.8.2
+        state: fixed
         update_cache: yes
 
     - name : Install rsync
@@ -28,6 +28,27 @@
         name: 
           - rsync
         state: latest
+        update_cache: yes
+
+    - name : Install Gulp
+      apt:
+        name: 
+          - gulp3.0.0
+        state: fixed
+        update_cache: yes
+
+    - name : Install Bower
+      apt:
+        name: 
+          - bower1.8.14
+        state: fixed
+        update_cache: yes
+
+    - name : Install Yarn
+      apt:
+        name: 
+          - yarn1.22.22
+        state: fixed
         update_cache: yes
 
     - name : Install docker
@@ -61,7 +82,7 @@
 
     - name: Install Angular
       shell:
-        "npm list -g @angular/cli || npm install -g @angular/cli@16"
+        "npm install -g @angular/cli@16"
 
     - name: Install low-level utilities
       apt:
