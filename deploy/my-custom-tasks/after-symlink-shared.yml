@@ -32,9 +32,8 @@
     state: restarted
 
 - name: Install NPM dependencies
-  composer:
-    command: npm install
-    working_dir: "{{ ansistrano_release_path.stdout }}"
+  command: npm install
+  working_dir: "{{ ansistrano_release_path.stdout }}"
     
 - name: Install Composer dependencies
   composer:
