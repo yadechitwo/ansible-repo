@@ -5,10 +5,6 @@
   vars_files:
     - ./vars/vars.yml
   vars:
-    MAIN_DIR: space/www/testing.eroolaconsulting.com/data/
-    DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/
-    RELEASE_DIR: space/www/testing.eroolaconsulting.com/data/releases
-    LOG_DIR: space/logs/apache/testing.eroolaconsulting.com
     USER: admin
 
   tasks:
@@ -83,26 +79,3 @@
       file:
         path: /usr/local/bin/composer
         mode: "a+x"
-
-    - name: Create directories if not exist
-      file: 
-        path: "{{ item }}"
-        state: directory
-        owner: admin
-        group: admin
-        mode: 0755
-      loop:
-        - "{{ MAIN_DIR }}"
-        - "{{ DOCUMENT_ROOT_DIR }}"
-        - "{{ RELEASE_DIR }}"
-        - "{{ LOG_DIR }}"
-
-    - name: Set up Apache virtualHost
-      template:
-        src: "apache-conf/apache2.conf"
-        dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
-
-    - name: Copy .htaccess file to server
-      template:
-        src: temp/v1.htaccess
-        dest: "{{ MAIN_DIR }}/v1.htaccess"

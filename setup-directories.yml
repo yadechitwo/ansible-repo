@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  user: admin
+  vars_files:
+    - ./vars/vars.yml
+  tasks:
+    - name: Create directories if not exist
+      file: 
+        path: "{{ item }}"
+        owner: admin
+        group: admin
+        mode: 0644
+      loop:
+        - "{{ MAIN_DIR }}"
+        - "{{ DOCUMENT_ROOT_DIR }}"
+        - "{{ RELEASE_DIR }}"
+        - "{{ LOG_DIR }}"
