@@ -2,4 +2,4 @@
 project_deploy_dir: /home/admin/space/www/testing.eroolaconsulting.com/data
 ansistrano_current_dir: current
 server_document_root: "{{ project_deploy_dir }}/{{ ansistrano_current_dir }}/web"
-git_key_path: /home/admin/keys/deploy
+git_key_path: /home/admin/workspace/keys/deploy
