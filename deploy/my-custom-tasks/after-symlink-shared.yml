@@ -30,6 +30,12 @@
   service:
     name: apache2
     state: restarted
+
+- name: Install NPM dependencies
+  become: true
+  composer:
+    command: npm install
+    working_dir: "{{ ansistrano_release_path.stdout }}"
     
 # - name: Install Composer dependencies
 #   become: true

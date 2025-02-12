@@ -46,9 +46,12 @@
         name:
           - php{{php_version}}
           - php{{php_version}}-mysql
+          - php{{php_version}}-pdo
+          - php{{php_version}}-pdo-mysql
           - php{{php_version}}-xml
           - php{{php_version}}-gd
           - php{{php_version}}-curl
+          - php{{php_version}}-zip
         state: fixed
         update_cache: yes
 
