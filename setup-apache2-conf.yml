@@ -1,5 +1,8 @@
 ---
 - hosts: webservers
+  user: admin
+  vars_files:
+    - ./vars/vars.yml
   tasks:
     - name: Set up Apache virtualHost
       template:

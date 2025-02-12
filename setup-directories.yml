@@ -4,7 +4,7 @@
   vars_files:
     - ./vars/vars.yml
   tasks:
-    - name: Create directories if not exist
+    - name: Create directories
       file: 
         path: "{{ item }}"
         owner: admin
