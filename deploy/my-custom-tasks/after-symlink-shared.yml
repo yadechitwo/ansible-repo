@@ -32,8 +32,7 @@
     state: restarted
 
 - name: Install NPM dependencies
-  shell: 
-    "npm install"
+  command: "npm install"
   working_dir: "{{ ansistrano_release_path.stdout }}"
     
 - name: Install Composer dependencies
