@@ -61,7 +61,7 @@
 
     - name: Install Angular
       shell:
-        "npm list -g @angular/cli || npm install -g @angular/cli@15"
+        "npm list -g @angular/cli || npm install -g @angular/cli@16"
 
     - name: Install low-level utilities
       apt:
