@@ -7,7 +7,7 @@
   vars_prompt:
     - name: git_branch
       prompt: 'Enter a branch to deploy'
-      default: master
+      default: cDsMigration-dumbo-sf4
       private: no
   vars:
     release_console_path: "{{ ansistrano_release_path.stdout }}/bin/console"

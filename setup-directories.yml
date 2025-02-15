@@ -10,7 +10,7 @@
         state: directory
         owner: admin
         group: admin
-        mode: 0644
+        mode: 0755
       loop:
         - "{{ MAIN_DIR }}"
         - "{{ DOCUMENT_ROOT_DIR }}"
