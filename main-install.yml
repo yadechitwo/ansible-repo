@@ -5,7 +5,6 @@
     - ./vars/vars.yml
   vars:
     USER: admin
-
   tasks:
     - name: Update and upgrade apt packages
       apt:
@@ -52,6 +51,7 @@
           - php{{php_version}}-gd
           - php{{php_version}}-curl
           - php{{php_version}}-zip
+          - php{{php_version}}-imagick
         state: present
 
     - name: Install apache2-related libraries
