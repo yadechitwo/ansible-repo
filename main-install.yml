@@ -20,9 +20,9 @@
 
     - name : Install NodeJs
       shell: | 
-        curl -fsSL https://deb.nodesource.com/setup_{{node_version}}.x
+        "curl -fsSL https://deb.nodesource.com/setup_{{node_version}}.x"
         sudo -E bash -
-        sudo apt-get install nodejs -y
+        sudo apt install nodejs -y
 
     - name : Install rsync
       apt:
