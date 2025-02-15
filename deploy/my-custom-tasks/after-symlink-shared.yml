@@ -40,6 +40,9 @@
   composer:
     command: install
     working_dir: "{{ ansistrano_release_path.stdout }}"
+  environment:
+    COMPOSER_NO_INTERACTION: "1"   
+    COMPOSER_ALLOW_SUPERUSER: "1"
 
 - name: Clear the cache
   become: true
