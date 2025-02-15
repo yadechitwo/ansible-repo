@@ -69,7 +69,7 @@
         state: present
 
     - name: Install Angular
-      shell: npm install -g @angular/cli@16
+      shell: npm install -g @angular/cli@15
 
     - name : Install Gulp
       shell: npm install -g gulp-cli@{{gulp_version}}
