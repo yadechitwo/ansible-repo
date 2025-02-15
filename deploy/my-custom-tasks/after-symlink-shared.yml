@@ -46,13 +46,13 @@
     COMPOSER_NO_INTERACTION: "1"   
     COMPOSER_ALLOW_SUPERUSER: "1"
 
-- name: Clear the cache
-  become: true
-  command: "{{ release_console_path }} cache:clear --no-warmup --env=prod"
+# - name: Clear the cache
+#   become: true
+#   command: "{{ release_console_path }} cache:clear --no-warmup --env=prod"
 
-- name: Warm up the cache
-  become: true
-  command: "{{ release_console_path }} cache:warmup --env=prod"
+# - name: Warm up the cache
+#   become: true
+#   command: "{{ release_console_path }} cache:warmup --env=prod"
 
 # - name: Set up directory permissions for var
 #   become: true

@@ -87,3 +87,6 @@
       file:
         path: /usr/local/bin/composer
         mode: "a+x"
+
+    - name: Set environment variable
+      command: "export SYMFONY_ENV=prod"
