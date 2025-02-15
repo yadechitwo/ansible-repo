@@ -1,4 +1,8 @@
 php_version: 7.4
+node_version: 20
+gulp_version: 3.0.0
+bower_version: 1.8.14
+yarn_version: 1.22.22
 MAIN_DIR: space/www/testing.eroolaconsulting.com/data/
 DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/
 RELEASE_DIR: space/www/testing.eroolaconsulting.com/data/releases

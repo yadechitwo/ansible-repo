@@ -1,6 +1,5 @@
 ---
 - hosts: webservers
-  user: admin
   become: true
   vars_files:
     - ./vars/vars.yml
@@ -8,55 +7,39 @@
     USER: admin
 
   tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
     - name : Install Git
       apt:
         name: 
           - git 
         state: latest
-        update_cache: yes
 
-    - name : Install NodeJs & npm
-      apt:
-        name: 
-          - nodejs=20.18.1
-          - npm=10.8.2
-        state: present
-        update_cache: yes
+    - name : Install NodeJs
+      shell: | 
+        curl -fsSL https://deb.nodesource.com/setup_{{node_version}}.x
+        sudo -E bash -
+        sudo apt-get install nodejs -y
 
     - name : Install rsync
       apt:
         name: 
           - rsync
         state: latest
-        update_cache: yes
 
-    - name : Install Gulp
+    - name : Install yarn
       apt:
         name: 
-          - gulp=3.0.0
-        state: present
-        update_cache: yes
-
-    - name : Install Bower
-      apt:
-        name: 
-          - bower=1.8.14
-        state: present
-        update_cache: yes
-
-    - name : Install Yarn
-      apt:
-        name: 
-          - yarn=1.22.22
-        state: present
-        update_cache: yes
+          - yarn={{yarn_version}}
 
     - name : Install docker
       apt:
         name: 
           - docker
         state: latest
-        update_cache: yes
 
     - name: Install php related packages
       apt:
@@ -70,25 +53,29 @@
           - php{{php_version}}-curl
           - php{{php_version}}-zip
         state: present
-        update_cache: yes
 
-    - name: Install apache-related pkgs
+    - name: Install apache2-related libraries
       apt: 
         name: 
           - libapache2-mod-php
           - libapache2-mod-wsgi-py3
         state: latest
-        update_cache: yes
-
-    - name: Install Angular
-      shell:
-        "npm install -g @angular/cli@16"
 
     - name: Install low-level utilities
       apt:
         name:
           - zip
           - unzip
+        state: present
+
+    - name: Install Angular
+      shell: npm install -g @angular/cli@16
+
+    - name : Install Gulp
+      shell: npm install -g gulp-cli@{{gulp_version}}
+
+    - name : Install Bower
+      shell: npm install -g bower@{{bower_version}}
     
     - name: Download Composer
       script: scripts/install-composer.sh
