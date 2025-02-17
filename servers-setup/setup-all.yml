@@ -1,0 +1,12 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: Include playbook 'Install softwares'
+      import_playbook: install-softwares.yml
+
+    - name: Include playbook 'Create directories'
+      import_playbook: create-directories.yml
+
+    - name: Include playbook 'Setup Apache2'
+      import_playbook: setup-apache2-conf.yml

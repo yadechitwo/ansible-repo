@@ -1,8 +1,8 @@
 ---
 - hosts: webservers
-  become: true
+  become: yes
   vars_files:
-    - ./vars/vars.yml
+    - ../vars/vars.yml
   vars:
     USER: admin
   tasks:
@@ -18,10 +18,12 @@
         state: latest
 
     - name : Download Nodejs{{node_version}}
-      shell: curl -fsSL https://deb.nodesource.com/setup_{{node_version}}.x | sudo -E bash -
+      shell: |
+        curl -fsSL https://deb.nodesource.com/setup_{{node_version}}.x | sudo -E bash -
+        apt-get install nodejs -y
     
-    - name: Install Nodejs{{node_version}} downloaded
-      shell: sudo apt-get install nodejs -y
+    # - name: Install Nodejs{{node_version}} downloaded
+    #   shell: sudo apt-get install nodejs -y
 
     - name : Install rsync
       apt:
@@ -69,19 +71,19 @@
         state: present
 
     - name: Install Angular
-      shell: npm install -g @angular/cli@15
+      command: npm install -g @angular/cli@{{angular_version_major}}
 
     - name : Install Gulp
-      shell: npm install -g gulp-cli@{{gulp_version}}
+      command: npm install -g gulp-cli@{{gulp_version}}
 
     - name : Install Bower
-      shell: npm install -g bower@{{bower_version}}
+      command: npm install -g bower@{{bower_version}}
     
     - name: Download Composer
       script: scripts/install-composer.sh
 
     - name: Move Composer globally
-      command: "mv composer.phar /usr/local/bin/composer"
+      command: mv composer.phar /usr/local/bin/composer
 
     - name: Set permissions on Composer
       file:
@@ -89,4 +91,4 @@
         mode: "a+x"
 
     - name: Set environment variable
-      command: "export SYMFONY_ENV=prod"
+      command: export SYMFONY_ENV=prod

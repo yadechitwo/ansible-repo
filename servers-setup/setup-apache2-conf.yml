@@ -3,7 +3,7 @@
   user: admin
   become: yes
   vars_files:
-    - ./vars/vars.yml
+    - ../vars/vars.yml
   tasks:
     - name: Set up Apache virtualHost
       template:
@@ -12,5 +12,5 @@
 
     - name: Copy .htaccess file to server
       template:
-        src: temp/v1.htaccess
+        src: templates/v1.htaccess
         dest: "{{ MAIN_DIR }}/v1.htaccess"
