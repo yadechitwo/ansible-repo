@@ -1,26 +1,31 @@
-- name: setup Mysql with medium_db db and remote login
+---
+- hosts: dbservers
   become: yes
-  hosts: dbservers
+  vars_files:
+    - ../vars/vars.yml
   tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: true
+
     - name: Installing Mysql  and dependencies
-      package:
-       name: "{{item}}"
+      apt:
+       name:
+        - mysql-server
+        - mysql-client 
+        - python3-mysqldb
+        - libmysqlclient-dev
        state: present
-       update_cache: yes
-      loop:
-       - mysql-server
-       - mysql-client 
-       - python3-mysqldb
-       - libmysqlclient-dev
-      become: yes
+       update_cache: true
 
     - name: start and enable mysql service
       service:
         name: mysql
         state: started
-        enabled: yes
+        enabled: true
 
-    - name: creating mysql user (medium_post)
+    - name: creating mysql user
       mysql_user:
         name: "{{db_user}}"
         password: "{{db_pass}}"
@@ -28,7 +33,7 @@
         host: '%'
         state: present
 
-    - name: creating medium_db
+    - name: creating database
       mysql_db:
         name: "{{db_name}}"
         state: present

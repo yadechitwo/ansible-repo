@@ -1,10 +1,18 @@
+# Package versions
 php_version: 7.4
 node_version: 20
 gulp_version: 3.0.0
 bower_version: 1.8.14
 yarn_version: 1.22.22
 angular_version_major: 15
+
+# Directories
 MAIN_DIR: space/www/testing.eroolaconsulting.com/data/
 DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/
 RELEASE_DIR: space/www/testing.eroolaconsulting.com/data/releases
 LOG_DIR: space/logs/apache/testing.eroolaconsulting.com
+
+# Database
+db_user: db_user_test
+db_pass: db_password
+db_name: db_name_test

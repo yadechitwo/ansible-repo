@@ -7,10 +7,10 @@
   tasks:
     - name: Set up Apache virtualHost
       template:
-        src: "apache-conf/apache2.conf"
+        src: "../apache-conf/apache2.conf"
         dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
 
     - name: Copy .htaccess file to server
       template:
-        src: templates/v1.htaccess
+        src: ../templates/v1.htaccess
         dest: "{{ MAIN_DIR }}/v1.htaccess"
