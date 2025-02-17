@@ -88,4 +88,4 @@
         mode: "a+x"
 
     - name: Set environment variable
-      command: export SYMFONY_ENV=prod
+      shell: export SYMFONY_ENV=prod
