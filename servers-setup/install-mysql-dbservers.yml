@@ -10,12 +10,10 @@
         update_cache: true
 
     - name: Download MySQL installer
-      get_url: 
-        url: https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
-        dest: /tmp/mysql-apt-config_0.8.29-1_all.deb
+      command: wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
     
     - name: Install MySQL server & client
-      shell: apt install -y /tmp/mysql-apt-config_0.8.29-1_all.deb
+      shell: apt install -y ./mysql-apt-config_0.8.29-1_all.deb
 
     - name: Update and upgrade apt packages
       apt:
