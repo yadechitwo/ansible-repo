@@ -43,51 +43,51 @@
        state: present
        update_cache: true
 
-    - name: start and enable mysql service
-      service:
-        name: mysql
-        state: started
-        enabled: true
+    # - name: start and enable mysql service
+    #   service:
+    #     name: mysql
+    #     state: started
+    #     enabled: true
 
-    - name: creating mysql user
-      mysql_user:
-        name: "{{db_user}}"
-        password: "{{db_pass}}"
-        login_user: root
-        login_password: "{{db_pass}}"
-        priv: '*.*:ALL'
-        state: present
+    # - name: creating mysql user
+    #   mysql_user:
+    #     name: "{{db_user}}"
+    #     password: "{{db_pass}}"
+    #     login_user: root
+    #     login_password: "{{db_pass}}"
+    #     priv: '*.*:ALL'
+    #     state: present
 
-    - name: creating database
-      mysql_db:
-        name: "{{db_name}}"
-        login_user: root
-        login_password: "{{db_pass}}"
-        state: present
+    # - name: creating database
+    #   mysql_db:
+    #     name: "{{db_name}}"
+    #     login_user: root
+    #     login_password: "{{db_pass}}"
+    #     state: present
 
-    - name: Enable remote login to mysql
-      lineinfile:
-         path: /etc/mysql/mysql.conf.d/mysqld.cnf
-         regexp: '^bind-address'
-         line: 'bind-address = 0.0.0.0'
-         backup: yes
-      notify:
-         - Restart mysql
+    # - name: Enable remote login to mysql
+    #   lineinfile:
+    #      path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    #      regexp: '^bind-address'
+    #      line: 'bind-address = 0.0.0.0'
+    #      backup: yes
+    #   notify:
+    #      - Restart mysql
 
-    # Copy database dump file to remote host and restore it to database 'my_db'
-    - name: Copy database dump file
-      copy:
-        src: usable-prod-db.sql
-        dest: /tmp
+    # # Copy database dump file to remote host and restore it to database 'my_db'
+    # - name: Copy database dump file
+    #   copy:
+    #     src: usable-prod-db.sql
+    #     dest: /tmp
 
-    - name: >
-        Import dump.sql with specific latin1 encoding,
-        similar to mysql -u <username> --default-character-set=latin1 -p <password> < dump.sql
-      community.mysql.mysql_db:
-        state: import
-        name: all
-        encoding: latin1
-        target: /tmp/usable-prod-db.sql
+    # - name: >
+    #     Import dump.sql with specific latin1 encoding,
+    #     similar to mysql -u <username> --default-character-set=latin1 -p <password> < dump.sql
+    #   community.mysql.mysql_db:
+    #     state: import
+    #     name: all
+    #     encoding: latin1
+    #     target: /tmp/usable-prod-db.sql
   
   handlers:
     - name: Restart mysql
