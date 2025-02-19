@@ -54,7 +54,7 @@
         name: "{{db_user}}"
         password: "{{db_pass}}"
         login_user: root
-        login_password: "{{db_pass}}"
+        login_password: passer00
         priv: '*.*:ALL'
         state: present
 
@@ -62,7 +62,7 @@
       mysql_db:
         name: "{{db_name}}"
         login_user: root
-        login_password: "{{db_pass}}"
+        login_password: passer00
         state: present
 
     - name: Enable remote login to mysql
