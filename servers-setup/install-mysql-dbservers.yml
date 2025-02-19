@@ -77,7 +77,7 @@
     # Copy database dump file to remote host and restore it to database 'my_db'
     - name: Copy database dump file
       copy:
-        src: usable-prod-db.sql
+        src: ../usable-prod-db.sql
         dest: /tmp
 
     - name: >
