@@ -11,19 +11,29 @@
 
     - name: Download MySQL installer
       command: wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+
     
-    - name: Install MySQL server & client
-      shell: apt install -y ./mysql-apt-config_0.8.29-1_all.deb
+    # - name: Download MySQL Repo using get_url
+    #   get_url:
+    #     url: https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+    #     dest: mysql-apt-config_0.8.29-1_all.deb
+    #     mode: 0755
+    #     group: admin
+    #     owner: admin
+    #     timeout: 20
+    
+    # - name: Install MySQL server & client
+    #   shell: apt install -y ./mysql-apt-config_0.8.29-1_all.deb
 
-    - name: Update and upgrade apt packages
-      apt:
-        upgrade: yes
-        update_cache: true
+    # - name: Update and upgrade apt packages
+    #   apt:
+    #     upgrade: yes
+    #     update_cache: true
 
-    - name: Installing Mysql
-      apt:
-       name:
-        - mysql-server
+    # - name: Installing Mysql
+    #   apt:
+    #    name:
+    #     - mysql-server
         
     - name: Installing mysql-related dependencies
       apt:
