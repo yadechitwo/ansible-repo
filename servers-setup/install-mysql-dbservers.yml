@@ -9,11 +9,27 @@
         upgrade: yes
         update_cache: true
 
-    - name: Installing Mysql  and dependencies
+    - name: Download MySQL installer
+      get_url: 
+        url: https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+        dest: /tmp/mysql-apt-config_0.8.29-1_all.deb
+    
+    - name: Install MySQL server & client
+      shell: apt install -y /tmp/mysql-apt-config_0.8.29-1_all.deb
+
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: true
+
+    - name: Installing Mysql
       apt:
        name:
         - mysql-server
-        - mysql-client 
+        
+    - name: Installing mysql-related dependencies
+      apt:
+       name:
         - python3-mysqldb
         - libmysqlclient-dev
        state: present
