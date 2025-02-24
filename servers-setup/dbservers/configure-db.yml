@@ -1,0 +1,36 @@
+---
+- hosts: dbservers
+  become: yes
+  vars_files:
+    - ../../vars/vars.yml
+  tasks:
+    - name: creating mysql user
+      mysql_user:
+        name: "{{db_user}}"
+        password: "{{db_pass}}"
+        login_user: root
+        login_password: passer00
+        priv: '*.*:ALL'
+        state: present
+
+    - name: creating database
+      mysql_db:
+        name: "{{db_name}}"
+        login_user: root
+        login_password: passer00
+        state: present
+
+    - name: Enable remote login to mysql
+      lineinfile:
+         path: /etc/mysql/mysql.conf.d/mysqld.cnf
+         regexp: '^bind-address'
+         line: 'bind-address = 0.0.0.0'
+         backup: yes
+      notify:
+         - Restart mysql
+
+  handlers:
+    - name: Restart mysql
+      service:
+        name: mysql
+        state: restarted

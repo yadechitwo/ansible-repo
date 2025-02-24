@@ -1,0 +1,20 @@
+---
+- hosts: dbservers
+  become: yes
+  vars_files:
+    - ../../vars/vars.yml
+  tasks:
+    # Copy database dump file to remote host and restore it to database 'my_db'
+    - name: Copy database dump file
+      copy:
+        src: ../../usable-prod-db.sql
+        dest: /tmp
+
+    - name: >
+        Import dump.sql with specific latin1 encoding,
+        similar to mysql -u <username> --default-character-set=latin1 -p <password> < dump.sql
+      community.mysql.mysql_db:
+        state: import
+        name: all
+        encoding: latin1
+        target: /tmp/usable-prod-db.sql
