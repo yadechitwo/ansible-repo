@@ -13,6 +13,24 @@
         priv: '*.*:ALL'
         state: present
 
+    # - name: creating mysql user
+    #   mysql_user:
+    #     name: "{{db_user}}"
+    #     password: "{{db_pass}}"
+    #     login_user: root
+    #     login_password: passer00
+    #     priv: '*.*:ALL'
+    #     state: present
+
+    # - name: creating mysql user
+    #   mysql_user:
+    #     name: "{{db_user}}"
+    #     password: "{{db_pass}}"
+    #     login_user: root
+    #     login_password: passer00
+    #     priv: '*.*:ALL'
+    #     state: present
+
     - name: creating database
       mysql_db:
         name: "{{db_name}}"
