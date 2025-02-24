@@ -9,43 +9,33 @@
         name: "{{db_user}}"
         password: "{{db_pass}}"
         login_user: root
-        login_password: passer00
         priv: '*.*:ALL'
         state: present
 
-    # - name: creating mysql user
-    #   mysql_user:
-    #     name: "{{db_user}}"
-    #     password: "{{db_pass}}"
-    #     login_user: root
-    #     login_password: passer00
-    #     priv: '*.*:ALL'
-    #     state: present
-
-    # - name: creating mysql user
-    #   mysql_user:
-    #     name: "{{db_user}}"
-    #     password: "{{db_pass}}"
-    #     login_user: root
-    #     login_password: passer00
-    #     priv: '*.*:ALL'
-    #     state: present
-
-    - name: creating database
-      mysql_db:
-        name: "{{db_name}}"
+    - name: creating mysql user read-only
+      mysql_user:
+        name: db_user_ro
+        password: db_pass_ro
         login_user: root
-        login_password: passer00
+        priv: 'wff_crm.*:SELECT/wff_social.*:SELECT/wff_website.*:SELECT'
         state: present
 
-    # - name: Enable remote login to mysql
-    #   lineinfile:
-    #      path: /etc/mysql/mysql.conf.d/mysqld.cnf
-    #      regexp: '^bind-address'
-    #      line: 'bind-address = 0.0.0.0'
-    #      backup: yes
-    #   notify:
-    #      - Restart mysql
+    - name: creating mysql user read-write
+      mysql_user:
+        name: db_user_rw
+        password: db_pass_rw
+        login_user: root
+        priv: 'wff_crm.*:SELECT,INSERT,UPDATE,DELETE/wff_social.*:SELECT,INSERT,UPDATE,DELETE/wff_website.*:SELECT,INSERT,UPDATE,DELETE'
+        state: present
+
+    - name: Enable remote login to mysql
+      lineinfile:
+         path: /etc/mysql/mysql.conf.d/mysqld.cnf
+         regexp: '^bind-address'
+         line: 'bind-address = 0.0.0.0'
+         backup: yes
+      notify:
+         - Restart mysql
 
   handlers:
     - name: Restart mysql

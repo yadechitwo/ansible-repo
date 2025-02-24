@@ -11,10 +11,9 @@
         dest: /tmp
 
     - name: >
-        Import dump.sql with specific latin1 encoding,
-        similar to mysql -u <username> --default-character-set=latin1 -p <password> < dump.sql
+        Import dump.sql with specific utf8 encoding,
       community.mysql.mysql_db:
         state: import
         name: all
-        encoding: latin1
+        encoding: utf8
         target: /tmp/Dump20250224.sql
