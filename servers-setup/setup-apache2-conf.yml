@@ -13,7 +13,7 @@
     - name: Copy conf 
       template:
         src: "../apache-conf/apache-999-oxalide.conf"
-        dest: "/etc/apache2/conf-enabled/999-oxalide.conf"
+        dest: "/etc/apache2/conf-available/999-oxalide.conf"
 
     - name: Copy .htaccess file to server
       template:
