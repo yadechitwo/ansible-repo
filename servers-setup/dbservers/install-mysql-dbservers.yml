@@ -37,11 +37,11 @@
         
     - name: Installing mysql-related dependencies
       apt:
-       name:
-        - python3-mysqldb
-        - libmysqlclient-dev
-       state: present
-       update_cache: true
+        name:
+          - python3-mysqldb
+          - libmysqlclient-dev
+        state: present
+        update_cache: true
 
     - name: start and enable mysql service
       service:
