@@ -28,6 +28,15 @@
         priv: 'wff_crm.*:SELECT,INSERT,UPDATE,DELETE/wff_social.*:SELECT,INSERT,UPDATE,DELETE/wff_website.*:SELECT,INSERT,UPDATE,DELETE'
         state: present
 
+    - name: Grant remote privileges to user  
+      community.mysql.mysql_query:
+        login_user: root
+        query:
+        - CREATE USER 'db_user_rw'@'10.133.72.133' IDENTIFIED BY 'db_pass_rw'
+        - GRANT ALL PRIVILEGES ON *.* TO db_user_rw@'10.133.72.133' WITH GRANT OPTION
+        - FLUSH PRIVILEGES
+        single_transaction: true
+
     - name: Enable remote login to mysql
       lineinfile:
          path: /etc/mysql/mysql.conf.d/mysqld.cnf

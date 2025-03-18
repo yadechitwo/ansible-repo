@@ -14,7 +14,7 @@
     - name : Install Git
       apt:
         name: 
-          - git 
+          - git
         state: latest
 
     - name : Download Node{{node_version}} & install
@@ -76,6 +76,9 @@
     - name : Install Bower
       command: npm install -g bower@{{bower_version}}
     
+    - name: Enable rewrite module
+      shell: a2enmod rewrite
+
     - name: Download Composer
       script: ../scripts/install-composer.sh
 
