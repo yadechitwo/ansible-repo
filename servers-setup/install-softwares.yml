@@ -17,11 +17,11 @@
           - git
         state: latest
 
-    - name : Install Redis-cli
-      apt:
-        name: 
-          - redis-cli
-        state: latest
+    # - name : Install Redis-cli
+    #   apt:
+    #     name: 
+    #       - redis-cli
+    #     state: latest
 
     - name : Download Node{{node_version}} & install
       shell: |
