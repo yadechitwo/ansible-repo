@@ -50,6 +50,14 @@
   shell: "gulp build"
   args:
     chdir: "{{ ansistrano_release_path.stdout }}/"
+
+- name: Replace Redis DNS by preprod values
+  become: true
+  shell: "sed -i 's,tcp://127.0.0.1:6379,tcp://sessionsredis-pp-1.vg7adr.ng.0001.euw1.cache.amazonaws.com,g' {{ ansistrano_release_path.stdout }}/.env"
+
+- name: Replace assets url by preprod values
+  become: true
+  shell: "sed -i 's,ASSETS_URL=http://127.0.0.1:8881,ASSETS_URL=http://testing.eroolaconsulting.com,g' {{ ansistrano_release_path.stdout }}/.env"
 # - name: Clear the cache
 #   become: true
 #   command: "{{ release_console_path }} cache:clear --no-warmup --env=prod"

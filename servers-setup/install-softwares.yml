@@ -17,6 +17,12 @@
           - git
         state: latest
 
+    - name : Install Redis-cli
+      apt:
+        name: 
+          - redis-cli
+        state: latest
+
     - name : Download Node{{node_version}} & install
       shell: |
         curl -fsSL https://deb.nodesource.com/setup_{{node_version}}.x | sudo -E bash -
