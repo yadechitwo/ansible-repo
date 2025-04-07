@@ -20,3 +20,8 @@
   environment:
     COMPOSER_NO_INTERACTION: "1"   
     COMPOSER_ALLOW_SUPERUSER: "1"
+
+- name: Install NPM dependencies
+  shell: "npm install"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}/"
