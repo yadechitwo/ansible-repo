@@ -8,7 +8,7 @@
     - name: Set up Apache virtualHost
       template:
         src: "../apache-conf/apache2.conf"
-        dest: "/etc/apache2/sites-available/testing.eroolaconsulting.com.conf"
+        dest: "/etc/apache2/sites-available/app.preprod.webforfashion.com.conf"
 
     - name: Copy conf 
       template:
@@ -18,4 +18,4 @@
     - name: Copy .htaccess file to server
       template:
         src: ../templates/v1.htaccess
-        dest: "{{ MAIN_DIR }}/v1.htaccess"
+        dest: "{{ CRM_MAIN_DIR }}/v1.htaccess"

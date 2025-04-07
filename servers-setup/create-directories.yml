@@ -12,7 +12,15 @@
         group: admin
         mode: 0755
       loop:
-        - "{{ MAIN_DIR }}"
-        - "{{ DOCUMENT_ROOT_DIR }}"
-        - "{{ RELEASE_DIR }}"
-        - "{{ LOG_DIR }}"
+        - "{{ CRM_MAIN_DIR }}"
+        - "{{ CRM_DOCUMENT_ROOT_DIR }}"
+        - "{{ CRM_RELEASE_DIR }}"
+        - "{{ CRM_LOG_DIR }}"
+        - "{{ PKG_MAIN_DIR }}"
+        - "{{ PKG_DOCUMENT_ROOT_DIR }}"
+        - "{{ PKG_RELEASE_DIR }}"
+        - "{{ PKG_LOG_DIR }}"
+        - "{{ WEB_MAIN_DIR }}"
+        - "{{ WEB_DOCUMENT_ROOT_DIR }}"
+        - "{{ WEB_RELEASE_DIR }}"
+        - "{{ WEB_LOG_DIR }}"

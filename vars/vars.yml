@@ -7,10 +7,20 @@ yarn_version: 1.22.22
 angular_version_major: 15
 
 # Directories
-MAIN_DIR: space/www/testing.eroolaconsulting.com/data/
-DOCUMENT_ROOT_DIR: space/www/testing.eroolaconsulting.com/data/current/
-RELEASE_DIR: space/www/testing.eroolaconsulting.com/data/releases
-LOG_DIR: space/logs/apache/testing.eroolaconsulting.com
+CRM_MAIN_DIR: space/www/app.preprod.webforfashion.com/data/
+CRM_DOCUMENT_ROOT_DIR: space/www/app.preprod.webforfashion.com/data/current/
+CRM_RELEASE_DIR: space/www/app.preprod.webforfashion.com/data/releases
+CRM_LOG_DIR: space/logs/apache/app.preprod.webforfashion.com
+
+PKG_MAIN_DIR: space/www/package.preprod.webforfashion.com/data/
+PKG_DOCUMENT_ROOT_DIR: space/www/package.preprod.webforfashion.com/data/current/
+PKG_RELEASE_DIR: space/www/package.preprod.webforfashion.com/data/releases
+PKG_LOG_DIR: space/logs/apache/package.preprod.webforfashion.com
+
+WEB_MAIN_DIR: space/www/websites.preprod.webforfashion.com/data/
+WEB_DOCUMENT_ROOT_DIR: space/www/websites.preprod.webforfashion.com/data/current/
+WEB_RELEASE_DIR: space/www/websites.preprod.webforfashion.com/data/releases
+WEB_LOG_DIR: space/logs/apache/websites.preprod.webforfashion.com
 
 # Database
 db_user: db_user_test
