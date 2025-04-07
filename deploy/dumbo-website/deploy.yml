@@ -16,7 +16,7 @@
     ansistrano_git_repo: git@bitbucket.org:cds-linux-apps/dumbo-website.git
     ansistrano_git_branch: "{{ git_branch }}"
     ansistrano_git_identity_key_path: "{{ git_key_path }}"
-    ansistrano_deploy_to: "{{ project_deploy_dir }}"
+    ansistrano_deploy_to: "{{ website_deploy_dir }}"
     ansistrano_keep_releases: 5
     ansistrano_after_symlink_shared_tasks_file: ""
   

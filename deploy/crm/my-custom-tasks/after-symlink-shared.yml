@@ -17,7 +17,7 @@
 
 - name: Enable new website
   become: true
-  command: /usr/sbin/a2ensite testing.eroolaconsulting.com.conf
+  command: /usr/sbin/a2ensite app.preprod.webforfashion.com.conf
 
 - name: Reload Apache
   become: true
@@ -57,7 +57,7 @@
 
 - name: Replace assets url by preprod values
   become: true
-  shell: "sed -i 's,ASSETS_URL=http://127.0.0.1:8881,ASSETS_URL=http://testing.eroolaconsulting.com,g' {{ ansistrano_release_path.stdout }}/.env"
+  shell: "sed -i 's,ASSETS_URL=http://127.0.0.1:8881,ASSETS_URL=http://app.preprod.webforfashion.com,g' {{ ansistrano_release_path.stdout }}/.env"
 # - name: Clear the cache
 #   become: true
 #   command: "{{ release_console_path }} cache:clear --no-warmup --env=prod"

@@ -1,6 +1,6 @@
 ---
 crm_deploy_dir: /home/admin/space/www/app.preprod.webforfashion.com/data
-dumbo_package_deploy_dir: /home/admin/space/www/package.preprod.webforfashion.com/data
-dumbo_website_deploy_dir: /home/admin/space/www/websites.preprod.webforfashion.com/data
+package_deploy_dir: /home/admin/space/www/package.preprod.webforfashion.com/data
+website_deploy_dir: /home/admin/space/www/websites.preprod.webforfashion.com/data
 ansistrano_current_dir: current
 git_key_path: /home/admin/workspace/keys/deploy
