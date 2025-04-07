@@ -57,6 +57,9 @@
           - php{{php_version}}-curl
           - php{{php_version}}-zip
           - php{{php_version}}-imagick
+          - php{{php_version}}-redis
+          - php{{php_version}}-json
+          - php{{php_version}}-readline
         state: present
 
     - name: Install apache2-related libraries
@@ -97,4 +100,4 @@
         mode: "a+x"
 
     - name: Set environment variable
-      shell: export SYMFONY_ENV=prod
+      shell: export SYMFONY_ENV=PROD

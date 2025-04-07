@@ -1,0 +1,27 @@
+---
+- hosts: webservers
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  
+  vars_prompt:
+    - name: git_branch
+      prompt: 'Enter a branch to deploy'
+      default: cDsMigration-dumbo-package
+      private: no
+  vars:
+    release_console_path: "{{ ansistrano_release_path.stdout }}/bin/console"
+    release_var_path: "{{ ansistrano_release_path.stdout }}/var"
+    ansistrano_deploy_via: "git"
+    ansistrano_git_repo: git@bitbucket.org:cds-linux-apps/dumbo-package.git
+    ansistrano_git_branch: "{{ git_branch }}"
+    ansistrano_git_identity_key_path: "{{ git_key_path }}"
+    ansistrano_deploy_to: "{{ project_deploy_dir }}"
+    ansistrano_keep_releases: 5
+    ansistrano_after_symlink_shared_tasks_file: ""
+  
+  environment:
+    SYMFONY_ENV: PROD
+
+  roles:
+     - { role: ansistrano.deploy }
