@@ -10,11 +10,6 @@
   service:
     name: apache2
     state: restarted
-
-- name: Install NPM dependencies
-  shell: "npm install"
-  args:
-    chdir: "{{ ansistrano_release_path.stdout }}/"
     
 - name: Install Composer dependencies
   composer:
@@ -25,8 +20,3 @@
   environment:
     COMPOSER_NO_INTERACTION: "1"   
     COMPOSER_ALLOW_SUPERUSER: "1"
-
-- name: Build project
-  shell: "gulp build"
-  args:
-    chdir: "{{ ansistrano_release_path.stdout }}/"
