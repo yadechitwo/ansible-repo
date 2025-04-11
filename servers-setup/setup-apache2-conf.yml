@@ -8,7 +8,7 @@
     - name: Set up Apache virtualHost
       template:
         src: "../apache-conf/apache2.conf"
-        dest: "/etc/apache2/sites-available/app-preprod2.webforfashion.com.conf"
+        dest: "/etc/apache2/sites-available/app.preprod.webforfashion.com.conf"
 
     - name: Copy conf 
       template:
