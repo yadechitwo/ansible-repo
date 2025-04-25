@@ -21,14 +21,6 @@
     COMPOSER_NO_INTERACTION: "1"   
     COMPOSER_ALLOW_SUPERUSER: "1"
 
-- name: Clear the cache
-  become: true
-  command: "php bin/console cache:clear --no-warmup --env=prod"
-
-- name: Warm up the cache
-  become: true
-  command: "php bin/console cache:warmup --env=prod"
-
 - name: Install NPM dependencies
   shell: "npm install"
   args:
