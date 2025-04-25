@@ -19,3 +19,9 @@
       template:
         src: ../templates/v1.htaccess
         dest: "{{ CRM_MAIN_DIR }}/v1.htaccess"
+
+    - name: Enable apache modules
+      shell: |
+        a2dismod php7.4 mpm_prefork
+        a2enmod proxy_fcgi setenvif mpm_event
+        sudo a2enconf php7.4-fpm

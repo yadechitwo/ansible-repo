@@ -60,6 +60,7 @@
           - php{{php_version}}-redis
           - php{{php_version}}-json
           - php{{php_version}}-readline
+          - php{{php_version}}-fpm
         state: present
 
     - name: Install apache2-related libraries
@@ -67,6 +68,7 @@
         name: 
           - libapache2-mod-php
           - libapache2-mod-wsgi-py3
+          - libapache2-mod-fcgid
         state: latest
 
     - name: Install low-level utilities
