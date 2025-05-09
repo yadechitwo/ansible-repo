@@ -5,10 +5,20 @@
   vars_files:
     - ../vars/vars.yml
   tasks:
-    - name: Set up Apache virtualHost
+    # - name: Set up Apache virtualHost - CRM
+    #   template:
+    #     src: "../apache-conf/apache2.conf"
+    #     dest: "/etc/apache2/sites-available/app.preprod.webforfashion.com.conf"
+    
+    - name: Set up Apache virtualHost - Packages
       template:
-        src: "../apache-conf/apache2.conf"
-        dest: "/etc/apache2/sites-available/app.preprod.webforfashion.com.conf"
+        src: "../apache-conf/package-apache2.conf"
+        dest: "/etc/apache2/sites-available/package.preprod.webforfashion.com.conf"
+
+    - name: Set up Apache virtualHost - Websites
+      template:
+        src: "../apache-conf/website-apache2.conf"
+        dest: "/etc/apache2/sites-available/websites.preprod.webforfashion.com.conf"
 
     - name: Copy conf 
       template:
@@ -23,6 +33,48 @@
     - name: Enable/Disable apache modules
       shell: |
         a2dismod php7.4 mpm_prefork
-        a2enmod rewrite proxy_fcgi setenvif mpm_event
+        a2enmod rewrite proxy_fcgi setenvif mpm_event http2
         sudo a2enconf php7.4-fpm
         systemctl restart apache2
+
+    - name: Disable default Apache site
+      become: true
+      shell: /usr/sbin/a2dissite 000-default.conf
+
+    - name: Reload Apache
+      become: true
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      become: true
+      service:
+        name: apache2
+        state: restarted
+
+    # - name: Enable new website - CRM
+    #   become: true
+    #   command: /usr/sbin/a2ensite app.preprod.webforfashion.com.conf
+
+    - name: Enable new website - Package
+      become: true
+      command: /usr/sbin/a2ensite package.preprod.webforfashion.com.conf
+
+    - name: Enable new website - Website
+      become: true
+      command: /usr/sbin/a2ensite websites.preprod.webforfashion.com.conf
+        # - name: Replace config vars_files
+
+    - name: Reload Apache
+      become: true
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      become: true
+      service:
+        name: apache2
+        state: restarted
+        

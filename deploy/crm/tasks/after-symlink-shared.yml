@@ -1,24 +1,4 @@
 ---
-- name: Disable default Apache site
-  become: true
-  shell: /usr/sbin/a2dissite 000-default.conf
-
-- name: Reload Apache
-  become: true
-  service:
-    name: apache2
-    state: reloaded
-
-- name: Restart Apache
-  become: true
-  service:
-    name: apache2
-    state: restarted
-
-- name: Enable new website
-  become: true
-  command: /usr/sbin/a2ensite app.preprod.webforfashion.com.conf
-
 - name: Reload Apache
   become: true
   service:

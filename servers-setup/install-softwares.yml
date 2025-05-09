@@ -68,7 +68,6 @@
         name: 
           - libapache2-mod-php
           - libapache2-mod-wsgi-py3
-          - libapache2-mod-fcgid
         state: latest
 
     - name: Install low-level utilities
