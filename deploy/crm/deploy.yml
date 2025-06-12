@@ -21,7 +21,7 @@
     ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/tasks/after-symlink-shared.yml"
   
   environment:
-    SYMFONY_ENV: PROD
+    SYMFONY_ENV: prod
 
   roles:
      - { role: ansistrano.deploy }
