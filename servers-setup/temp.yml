@@ -1,0 +1,16 @@
+---
+- hosts: webservers
+  user: admin
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    # - name: Set up Apache virtualHost - CRM
+    #   template:
+    #     src: "../apache-conf/apache2.conf"
+    #     dest: "/etc/apache2/sites-available/app.preprod.webforfashion.com.conf"
+    
+    - name: Set up Apache virtualHost - Packages
+      template:
+        src: "../php-cli.ini"
+        dest: "/etc/php/7.4/cli/php.ini"
